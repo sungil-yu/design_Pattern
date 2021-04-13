@@ -1,22 +1,32 @@
 package com.study.design;
 
-import com.study.design.singleton.AClazz;
-import com.study.design.singleton.BClazz;
-import com.study.design.singleton.SocketClient;
+import com.study.design.adapter.Adapter;
+import com.study.design.adapter.eobject.AirConditioner;
+import com.study.design.adapter.Electronic110V;
+import com.study.design.adapter.eobject.Hairdryer;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        AClazz aClazz = new AClazz();
+//        AClazz aClazz = new AClazz();
+//
+//        BClazz bClazz = new BClazz();
+//
+//        SocketClient Asocket = aClazz.getSocketClient();
+//        SocketClient Bsocket = bClazz.getSocketClient();
+//        System.out.println(Asocket.equals(Bsocket));
 
-        BClazz bClazz = new BClazz();
+        Hairdryer hairdryer = new Hairdryer();
+        connect(hairdryer);
 
-        SocketClient Asocket = aClazz.getSocketClient();
-        SocketClient Bsocket = bClazz.getSocketClient();
+        AirConditioner airConditioner = new AirConditioner();
+        Electronic110V adapter = new Adapter(airConditioner);
+        connect(adapter);
 
+    }
 
-        System.out.println(Asocket.equals(Bsocket));
-
+    public static void connect(Electronic110V electronic110V) {
+        electronic110V.powerOn();
     }
 }
